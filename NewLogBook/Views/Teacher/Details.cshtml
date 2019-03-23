@@ -1,0 +1,68 @@
+﻿@using NewLogBook.Entities
+@model NewLogBook.Entities.Teacher
+
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Details Teacher</h1>
+
+<div>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.FirstName)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.FirstName)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.LastName)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.LastName)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayName("Department")
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Department.Name)
+        </dd>
+
+    </dl>
+</div>
+<div class="row">
+    <div class="col-sm-12">
+        <h4>List Subject</h4>
+    </div>
+</div>
+<div class="row">
+    @{
+        bool flag = false;
+    }
+    @foreach (TeacherSubject teacherSubject in Model.TeacherSubjects)
+    {
+        if (Model.Id == teacherSubject.TeacherId)
+        {
+            flag = true;
+            <dt class="col-sm-3">
+                Subject:
+            </dt>
+            <dd class="col-sm-9">
+                @teacherSubject.Subject.Name
+            </dd>
+        }
+    }
+    @if (!flag)
+    {
+        <div class="col-sm-12 text-center text-info">
+            Not Subjects in teacher!
+        </div>
+    }
+</div>
+
+<div>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }, new {@class = "btn-success btn btn-sm"}) 
+    <a asp-action="Index" class="btn-primary btn btn-sm">Back to List</a>
+</div>

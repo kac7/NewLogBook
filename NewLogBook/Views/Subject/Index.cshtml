@@ -1,0 +1,49 @@
+﻿@using NewLogBook.Entities
+@model IEnumerable<NewLogBook.Entities.Subject>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>List Subject</h1>
+
+<p>
+    <a asp-action="Create" class="btn-primary btn">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayName("Teacher name")
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @foreach (TeacherSubject VARIABLE in item.TeachersSubjects)
+                {
+                    if (item.Id == VARIABLE.SubjectId)
+                    {
+                        <div>@VARIABLE.Teacher.FirstName @VARIABLE.Teacher.LastName</div>
+                    }
+                }
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.Id }, new {@class = "btn-success btn btn-sm"}) 
+                @Html.ActionLink("Details", "Details", new { id = item.Id }, new { @class = "btn-info btn btn-sm" }) 
+                @Html.ActionLink("Delete", "Delete", new { id = item.Id }, new { @class = "btn-danger btn btn-sm" })
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

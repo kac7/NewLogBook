@@ -1,0 +1,42 @@
+﻿@model IEnumerable<NewLogBook.Entities.Group>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>List Groups</h1>
+
+<p>
+    <a asp-action="Create" class="btn btn-primary">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayName("Name Group")
+            </th>
+            <th>
+                @Html.DisplayName("Name Facultie")
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Facultie.Name)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.Id }, new { @class = "btn-success btn btn-sm" }) 
+                @Html.ActionLink("Details", "Details", new { id = item.Id }, new { @class = "btn-info btn btn-sm" }) 
+                @Html.ActionLink("Delete", "Delete", new { id = item.Id }, new { @class = "btn-danger btn btn-sm" })
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

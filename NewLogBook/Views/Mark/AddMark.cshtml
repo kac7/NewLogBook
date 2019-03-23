@@ -1,0 +1,52 @@
+﻿@model NewLogBook.Models.MarkModel
+
+@{
+    ViewData["Title"] = "AddMark";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Add Mark</h1>
+<hr />
+<div class="row">
+    <div class="col-md-12">
+        <form asp-action="AddMark">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="row">
+                <input asp-for="StudentId" value="@Model.Student.Id" type="hidden"/>
+                <div class="col-md-4">
+                    <h4>@Html.DisplayName("Student:")</h4> 
+                </div>
+                <div class="col-md-4"><h5>@Model.Student.FirstName @Model.Student.LastName</h5></div>
+            </div>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label asp-for="SubjectId" class="control-label"></label>
+                        @Html.DropDownList("SubjectId", new List<SelectListItem>(Model.GetSelectListItem()), "--none--", new {@class = "form-control"})
+                        <span asp-validation-for="SubjectId" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label asp-for="Value" class="control-label"></label>
+                        <select asp-for="Value" asp-items="Model.Values" class="form-control">
+                            <option value="">--none--</option>
+                        </select>
+                        <span asp-validation-for="Value" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>  
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-controller="Student" asp-action="Index" class="btn-primary btn btn-sm">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

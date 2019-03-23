@@ -1,0 +1,15 @@
+﻿
+@{
+    ViewData["Title"] = "WarningTeacher";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>WarningTeacher</h1>
+<div class="row text-center text-warning">
+    <div class="col-md-12">
+        <h2>You cannot create a teacher without a department!</h2>
+    </div>
+    <div class="col-md-12">
+        <a asp-controller="Department" asp-action="Create" class="btn btn-primary">Create new Department</a>
+    </div>
+</div>

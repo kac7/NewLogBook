@@ -1,0 +1,54 @@
+﻿@using NewLogBook.Entities
+@model NewLogBook.Entities.Group
+
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Details Group</h1>
+
+<div>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayName("Name Group")
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayName("Name Facultie")
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Facultie.Name)
+        </dd>
+    </dl>
+    <div class="row">
+        <div class="col-md-12">
+            <h3>List Students</h3>
+        </div>
+    </div>
+    <dl class="row">
+        @if (Model.Students.Count != 0)
+        {
+            foreach (Student VARIABLE in Model.Students)
+            {
+                <dt class="col-sm-3">Name student:</dt>
+                <dd class="col-sm-9">@VARIABLE.LastName @VARIABLE.FirstName</dd>
+            }
+        }
+        else
+        {
+            <div class="col-md-12">
+                <p class="text-info">This group is not students!</p>
+            </div>
+        }
+
+
+    </dl>
+</div>
+<div>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id },new {@class = "btn-success btn btn-sm"}) 
+    <a asp-action="Index" class="btn-primary btn btn-sm">Back to List</a>
+</div>

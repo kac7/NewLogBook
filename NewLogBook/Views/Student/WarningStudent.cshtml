@@ -1,0 +1,15 @@
+﻿
+@{
+    ViewData["Title"] = "WarningStudent";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Warning Student</h1>
+<div class="row text-center text-warning">
+    <div class="col-md-12">
+        <h2>Until you have groups, you will not be able to use this method!</h2>
+    </div>
+    <div class="col-md-12">
+        <a asp-controller="Group" asp-action="Create" class="btn btn-primary">Create new Group</a>
+    </div>
+</div>
